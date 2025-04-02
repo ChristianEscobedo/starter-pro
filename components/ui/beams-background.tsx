@@ -49,13 +49,12 @@ export function BeamsBackground({
   const animationFrameRef = useRef<number>(0)
   const MINIMUM_BEAMS = 30
 
-  const opacityMap = {
-    subtle: 0.8,
-    medium: 0.9,
-    strong: 1,
-  }
-
   useEffect(() => {
+    const opacityMap = {
+      subtle: 0.8,
+      medium: 0.9,
+      strong: 1,
+    }
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -148,7 +147,7 @@ export function BeamsBackground({
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [intensity, opacityMap])
+  }, [intensity])
 
   return (
     <>

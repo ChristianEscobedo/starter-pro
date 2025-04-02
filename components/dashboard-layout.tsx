@@ -39,7 +39,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               height={32}
               className="ml-2"
               alt="AI Photo Logo"
-              alt="AI Photo Logo"
             />
           </Link>
         </div>
@@ -81,7 +80,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   width={32}
                   height={32}
                   className="ml-2"
-                  alt="AI Photo Logo"
                   alt="AI Photo Logo"
                 />
               </Link>

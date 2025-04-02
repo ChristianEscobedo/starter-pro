@@ -92,7 +92,15 @@ interface PatternProps {
   cellClassName?: string
 }
 
-const Cell = ({ rowIdx, colIdx, clickedCell }: { rowIdx: number; colIdx: number; clickedCell: [number, number] | null }) => {
+const Cell = ({
+  rowIdx,
+  colIdx,
+  clickedCell,
+}: {
+  rowIdx: number
+  colIdx: number
+  clickedCell: [number, number] | null
+}) => {
   const cellRef = React.useRef([rowIdx, colIdx])
   const controls = useAnimation()
 
@@ -111,7 +119,7 @@ const Cell = ({ rowIdx, colIdx, clickedCell }: { rowIdx: number; colIdx: number;
 
   return (
     <div
-      className="border-b border-l border-neutral-600 bg-transparent relative z-[100] border-blue-600"
+      className="relative z-[100] border-b border-l border-blue-600 border-neutral-600 bg-transparent"
       onClick={() => {}}
     >
       <motion.div
@@ -158,7 +166,7 @@ const Pattern = ({ className, cellClassName }: PatternProps) => {
       {matrix.map((row, rowIdx) => (
         <div key={`matrix-row-${rowIdx}`} className="z-80 relative flex flex-col border-b">
           {row.map((column, colIdx) => (
-            <div 
+            <div
               key={`matrix-col-${colIdx}`}
               className={cn('border-b border-l border-neutral-600 bg-transparent', cellClassName)}
               onClick={() => handleCellClick(rowIdx, colIdx)}
@@ -178,10 +186,8 @@ const Pattern = ({ className, cellClassName }: PatternProps) => {
               />
             </div>
           ))}
-
-          </div>
         </div>
-      )}
+      ))}
     </div>
   )
 }

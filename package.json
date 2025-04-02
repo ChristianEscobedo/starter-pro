@@ -80,7 +80,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.1",
-    "tempo-devtools": "^2.0.98",
+    "tempo-devtools": "^2.0.99",
     "typescript": "^5"
   }
 }
