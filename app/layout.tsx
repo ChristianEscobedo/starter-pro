@@ -3,7 +3,8 @@ import localFont from 'next/font/local'
 import './globals.css'
 import TanstackClientProvider from '@/components/providers/tanstack-client-provider'
 import ClerkClientProvider from '@/components/providers/clerk-client-provider'
-import { BackgroundCells } from '@/components/ui/background-cells'
+import Script from 'next/script'
+import { TempoInit } from './tempo-init'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -17,8 +18,8 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'SaaSSystems.io - AI-First Micro SaaS Platform',
-  description: 'Launch your AI-powered Micro SaaS business with our cutting-edge platform.',
+  title: 'AI Photo Transformer',
+  description: 'Transform your photos into YouTube thumbnails, memes, and professional images',
 }
 
 export default function RootLayout({
@@ -28,12 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <BackgroundCells className="bg-slate-950">
-          <ClerkClientProvider>
-            <TanstackClientProvider>{children}</TanstackClientProvider>
-          </ClerkClientProvider>
-        </BackgroundCells>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-background antialiased`}>
+        <Script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js" />
+        <ClerkClientProvider>
+          <TanstackClientProvider>{children}</TanstackClientProvider>
+        </ClerkClientProvider>
+        <TempoInit />
       </body>
     </html>
   )
