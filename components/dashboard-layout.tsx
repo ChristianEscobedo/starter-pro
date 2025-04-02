@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 import { UserButton } from '@clerk/nextjs'
 import { ModeToggle } from './mode-toggle'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import {
   Home,
   Image,
@@ -13,7 +12,6 @@ import {
   Settings,
   CreditCard,
   HelpCircle,
-  LogOut,
   Menu,
   X,
 } from 'lucide-react'
@@ -40,6 +38,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               width={32}
               height={32}
               className="ml-2"
+              alt="AI Photo Logo"
               alt="AI Photo Logo"
             />
           </Link>
@@ -82,6 +81,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   width={32}
                   height={32}
                   className="ml-2"
+                  alt="AI Photo Logo"
                   alt="AI Photo Logo"
                 />
               </Link>

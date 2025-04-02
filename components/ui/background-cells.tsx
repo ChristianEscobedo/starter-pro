@@ -181,7 +181,7 @@ const Pattern = ({ className, cellClassName }: PatternProps) => {
 
           </div>
         </div>
-      ))}
+      )}
     </div>
   )
 }
