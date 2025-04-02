@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { OpenAI } from 'openai'
-import { generateText } from 'ai'
 import { getMockImage } from '@/utils/ai/mock-image-generator'
 
 export const maxDuration = 30 // Allow responses up to 30 seconds
@@ -8,7 +7,7 @@ export const maxDuration = 30 // Allow responses up to 30 seconds
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { prompt, negative_prompt, topText, bottomText } = body
+    const { prompt, topText, bottomText } = body
 
     if (!prompt) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 })

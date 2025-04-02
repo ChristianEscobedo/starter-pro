@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Wand2, Download, Loader2 } from 'lucide-react'
 import { ImageUploader } from '@/components/image-uploader'
+import Image from 'next/image'
 
 interface ImageGeneratorProps {
   title: string
@@ -148,10 +149,12 @@ export function ImageGenerator({
                     <div
                       className={`relative overflow-hidden rounded-md bg-slate-100 ${getAspectRatioClass()}`}
                     >
-                      <img
+                      <Image
                         src={uploadedImage}
                         alt="Reference image"
                         className="h-full w-full object-cover"
+                        width={500}
+                        height={500}
                       />
                     </div>
                     <Button
@@ -215,10 +218,12 @@ export function ImageGenerator({
                 <div
                   className={`relative overflow-hidden rounded-md bg-slate-100 ${getAspectRatioClass()}`}
                 >
-                  <img
+                  <Image
                     src={generatedImage}
                     alt="Generated image"
                     className="h-full w-full object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
                 <Button className="w-full gap-2" onClick={handleDownload}>

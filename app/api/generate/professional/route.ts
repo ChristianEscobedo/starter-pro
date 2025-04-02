@@ -7,7 +7,7 @@ export const maxDuration = 30 // Allow responses up to 30 seconds
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { prompt, negative_prompt, style, brightness, contrast, saturation } = body
+    const { prompt, style, brightness, contrast, saturation } = body
 
     if (!prompt) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 })

@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { MoveRight, Image as ImageIcon, Youtube, MessageSquare } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { GradientButton } from '@/components/ui/gradient-button'
 

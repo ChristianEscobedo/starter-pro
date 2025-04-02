@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
-import { Upload, X } from 'lucide-react'
+import { Upload } from 'lucide-react'
 
 interface ImageUploaderProps {
   onImageUpload: (imageUrl: string) => void
@@ -28,23 +28,29 @@ export function ImageUploader({ onImageUpload }: ImageUploaderProps) {
     e.stopPropagation()
   }, [])
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setIsDragging(false)
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+      setIsDragging(false)
 
-    const files = e.dataTransfer.files
-    if (files && files.length > 0) {
-      handleFile(files[0])
-    }
-  }, [])
+      const files = e.dataTransfer.files
+      if (files && files.length > 0) {
+        handleFile(files[0])
+      }
+    },
+    [handleFile]
+  )
 
-  const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (files && files.length > 0) {
-      handleFile(files[0])
-    }
-  }, [])
+  const handleFileInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files
+      if (files && files.length > 0) {
+        handleFile(files[0])
+      }
+    },
+    [handleFile]
+  )
 
   const handleFile = useCallback(
     (file: File) => {

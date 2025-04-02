@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { Button } from './ui/button'
 import { useState } from 'react'
+import NextImage from 'next/image'
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -34,6 +35,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="flex h-16 items-center border-b px-6">
           <Link href="/" className="flex items-center">
             <span className="text-xl font-semibold">AI Photo</span>
+            <NextImage
+              src="/logo.png"
+              width={32}
+              height={32}
+              className="ml-2"
+              alt="AI Photo Logo"
+            />
           </Link>
         </div>
         <nav className="flex flex-col gap-1 p-4">
@@ -69,6 +77,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex h-16 items-center justify-between border-b px-6">
               <Link href="/" className="flex items-center">
                 <span className="text-xl font-semibold">AI Photo</span>
+                <NextImage
+                  src="/logo.png"
+                  width={32}
+                  height={32}
+                  className="ml-2"
+                  alt="AI Photo Logo"
+                />
               </Link>
               <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
                 <X className="h-5 w-5" />
