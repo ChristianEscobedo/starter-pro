@@ -25,25 +25,18 @@ export const BackgroundCells = ({ children, className }: BackgroundCellsProps) =
 const BackgroundCellCore = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const maskRef = useRef<HTMLDivElement>(null);
-  const size = 800;
+  const size = 1200;
 
   useEffect(() => {
-    let lastX = 0;
-    let lastY = 0;
     let rafId: number | null = null;
+    let lastX = window.innerWidth / 2;
+    let lastY = window.innerHeight / 2;
     
     const updatePosition = () => {
       if (maskRef.current) {
-        // Apply a vertical offset to compensate for the 2-inch difference
-        const maskPos = `${lastX - size / 2}px ${lastY - size / 2 - 100}px`;
-        maskRef.current.style.webkitMaskPosition = maskPos;
-        maskRef.current.style.maskPosition = maskPos;
-        
-        // Update state for any components that need it
-        setMousePosition({
-          x: lastX,
-          y: lastY,
-        });
+        maskRef.current.style.webkitMaskPosition = `${lastX - size / 2}px ${lastY - size / 2}px`;
+        maskRef.current.style.maskPosition = `${lastX - size / 2}px ${lastY - size / 2}px`;
+        setMousePosition({ x: lastX, y: lastY });
       }
       rafId = null;
     };
@@ -57,11 +50,7 @@ const BackgroundCellCore = () => {
       }
     };
     
-    // Set initial position
-    lastX = window.innerWidth / 2;
-    lastY = window.innerHeight / 2;
     updatePosition();
-    
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     return () => {
@@ -85,13 +74,14 @@ const BackgroundCellCore = () => {
           style={{
             maskImage: `radial-gradient(${size / 2}px circle at center, white, transparent)`,
             WebkitMaskImage: `radial-gradient(${size / 2}px circle at center, white, transparent)`,
-            WebkitMaskPosition: `${mousePosition.x - size / 2}px ${mousePosition.y - size / 2 - 100}px`,
-            maskPosition: `${mousePosition.x - size / 2}px ${mousePosition.y - size / 2 - 100}px`,
+            WebkitMaskPosition: `${mousePosition.x - size / 2}px ${mousePosition.y - size / 2}px`,
+            maskPosition: `${mousePosition.x - size / 2}px ${mousePosition.y - size / 2}px`,
             WebkitMaskSize: `${size}px`,
             maskSize: `${size}px`,
             pointerEvents: "none",
             maskRepeat: "no-repeat",
             WebkitMaskRepeat: "no-repeat",
+            willChange: "mask-position, -webkit-mask-position",
           }}
         >
           <Pattern cellClassName="border-blue-600 relative z-[100]" />
@@ -107,17 +97,17 @@ interface PatternProps {
 }
 
 const Pattern = ({ className, cellClassName }: PatternProps) => {
-  const x = new Array(47).fill(0);
-  const y = new Array(30).fill(0);
+  const x = new Array(Math.ceil(window.innerWidth / 24)).fill(0);
+  const y = new Array(Math.ceil(window.innerHeight / 24)).fill(0);
   const matrix = x.map((_, i) => y.map((_, j) => [i, j]));
   const [clickedCell, setClickedCell] = useState<[number, number] | null>(null);
 
   return (
-    <div className={cn("flex flex-row relative z-30", className)}>
+    <div className={cn("flex flex-row relative z-80", className)}>
       {matrix.map((row, rowIdx) => (
         <div
           key={`matrix-row-${rowIdx}`}
-          className="flex flex-col relative z-20 border-b"
+          className="flex flex-col relative z-80 border-b"
         >
           {row.map((column, colIdx) => {
             const controls = useAnimation();

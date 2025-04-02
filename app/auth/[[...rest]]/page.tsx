@@ -4,7 +4,6 @@ import { SignIn, SignUp } from '@clerk/nextjs';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
-import { BorderBeam } from '@/components/ui/border-beam';
 
 export default function AuthPage() {
   const [mode, setMode] = useState<'signIn' | 'signUp'>('signIn');
@@ -16,24 +15,8 @@ export default function AuthPage() {
           {/* Radial black dimmer behind the box */}
           <div className="absolute -inset-20 bg-black/40 rounded-[50%] blur-xl -z-20"></div>
           
-          {/* Black box with white stroke and border beam */}
-          <div className="absolute inset-0 bg-black/60 rounded-3xl backdrop-blur-sm -z-10 border border-white/10 overflow-hidden">
-            <BorderBeam 
-              size={100} 
-              colorFrom="#ffffff" 
-              colorTo="#3b82f6" 
-              duration={8}
-              initialOffset={25}
-            />
-            <BorderBeam 
-              size={100} 
-              colorFrom="#3b82f6" 
-              colorTo="#ffffff" 
-              duration={8}
-              reverse={true}
-              initialOffset={75}
-            />
-          </div>
+          {/* Black box with white stroke */}
+          <div className="absolute inset-0 bg-black/60 rounded-3xl backdrop-blur-sm -z-10 border border-white/10"></div>
           
           <div className="w-full flex justify-between items-center mb-4">
             <Link href="/" className="text-white hover:text-blue-400 transition-colors flex items-center gap-2">
